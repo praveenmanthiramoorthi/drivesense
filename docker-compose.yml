@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  drivesense-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+      - JWT_SECRET=drivesense-production-secret-key-2026
+      - DB_PATH=/app/data/drivesense.db
+      - UPLOAD_DIR=/app/data/uploads
+      - PASS_THRESHOLD=70
+    volumes:
+      - drivesense_data:/app/data
+
+volumes:
+  drivesense_data:
